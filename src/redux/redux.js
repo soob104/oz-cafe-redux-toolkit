@@ -21,19 +21,6 @@ switch(action.type){
     return [...state, action.payload]
   case 'removeFromCart':
       return state.filter(el => action.payload.id !== el.id);
-    case 'updateCartItemOptions' : {
-      const {index, newOptions} = action.payload;
-      return state.map((item, i) =>
-      i === index ? {...item, options: newOptions} : item
-    );
-    }
-    case 'updateCartItemQuantity':{
-      const {index, newQuantity} = action.payload;
-      return state.map((item, i) => 
-      i === index ? {...item, quantity: newQuantity} : item
-    );
-    }
-    
       default:
         return state
 }
@@ -48,12 +35,4 @@ const rootReducer = combineReducers({cartReducer, menuReducer})
 
 export const store = legacy_createStore(rootReducer)
 
-export const updateCartItemOptions = (index, newOptions) => ({
-  type: 'update_Cart_Item_Options',
-  payload : {index, newOptions}
-})
 
-export const updateCartItemQuantity = (index, newQuantity) => ({
-  type: 'update_Cart_Item_Quanity',
-  payload: {index, newQuantity}
-})
